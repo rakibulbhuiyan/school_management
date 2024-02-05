@@ -1,3 +1,4 @@
+import json
 class School():
     def __init__(self, val) -> None:
         self.val = val
@@ -25,7 +26,7 @@ class School():
                     while(key != "stop"):
                         add_id +=1
                         info['id']=add_id
-                        value = input(f'Enter {userType}"s information for this feild ->{key}: ')
+                        value = input(f'Enter {userType}"s information for this feild,,Kindly enter stop to turminate {key}: ')
                         info[key] = value
                         key = input(f'Enter another key: ')
 
@@ -59,24 +60,52 @@ class School():
                     info["Classes"] = class_list       
                 
                 self.info_list.append(info)
+
             return self.info_list  
  
     def total_info(self):    
+        # filter_final_list=[i for i in final if i] 
+        file=open('data.json')
+        data=json.load(file)
+        return len(data[0]['hr']), len(data[1]['teacher']), len(data[2]['student'])
+    
+    def add_record(self):    
         while True:
-            userType = input('Enter the user type:(or press stop to terminate) :').lower()
+            userType = input('Enter the user type:(or press stop to terminate :').lower()
             if userType =='stop':
                 break
             else:
                 input_no = int(input(f'How many {userType}s info you want to record? : ')) 
                 record_list = self.__record(userType, input_no)
-                print(record_list)
+                print(record_list)        
                 if userType=='hr':
-                    self.final[0].append(record_list)   
-                if userType=='teacher':
-                    self.final[1].append(record_list) 
-                if userType=='student':
-                    self.final[2].append(record_list) 
+                    file=open('data.json')
+                    previaous_data=json.load(file)
+                    previaous_data[0]['hr'].append(record_list)
+                    file1=open('data.json','w')
+                    new_data=str(previaous_data).replace("'",'"')
+                    file1.write(new_data)
+                    
+                    # self.final[0].append(record_list)   
+                elif userType=='teacher':
+                    file=open('data.json')
+                    previaous_data=json.load(file)
+                    previaous_data[1]['teacher'].append(record_list)
+                    file1=open('data.json','w')
+                    new_data=str(previaous_data).replace("'",'"')
+                    file1.write(new_data)
+                              
+                elif userType=='student':
+                    file=open('data.json')
+                    previaous_data=json.load(file)
+                    previaous_data[2]['student'].append(record_list)
+                    file1=open('data.json','w')
+                    new_data=str(previaous_data).replace("'",'"')
+                    file1.write(new_data)            
+                else:
+                    print('Invalid user name')
+            return True
         # filter_final_list=[i for i in final if i] 
-        return len(self.final[0]), len(self.final[1]), len(self.final[2])
+       
 
         

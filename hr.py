@@ -9,7 +9,7 @@ class HR(School,Rules):
         super().__init__(3)
         self.totalHR, self.totalTeacher, self.totalStudent = self.total_info()
     
-    
+     
     def individualRules(self):
         rules = """
 Compliance with Laws and Regulations:
@@ -43,4 +43,5 @@ Monitor and assess academic performance and progress.
 
 new_HR = {"name": "Sabrina","salary": 8000}
 obj_hr = HR(new_HR)
+obj_hr.add_record()
 
