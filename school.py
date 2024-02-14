@@ -5,14 +5,12 @@ class School():
         self.final=[[],[],[]]
 
     def __record(self, userType : str,  input_no : int):
-
             self.info_list = []
-
             for j in range(input_no):
 
                 info = {}
 
-                print(f'\nPlease add a {userType}"s info. Kindly enter stop to turminate.')
+                print(f'\nPlease add a {userType}"s info or enter "stop" to turminate :')
                 key = input(f'Enter first key: ')
 
                 if key != "":
@@ -26,7 +24,7 @@ class School():
                     while(key != "stop"):
                         add_id +=1
                         info['id']=add_id
-                        value = input(f'Enter {userType}"s information for this feild,,Kindly enter stop to turminate {key}: ')
+                        value = input(f'Enter {userType}"s information for this feild or enter "stop" to turminate {key}: ')
                         info[key] = value
                         key = input(f'Enter another key: ')
 
@@ -42,23 +40,15 @@ class School():
                     info["Fathers_name"] = fathername
                 
                 if userType == 'student' or userType == 'teacher':
-                    total_subject_no = int(input('Enter total subject no: '))
-                    subject_list = []
-
-                    for i in range(total_subject_no):
-                        subject_list.append(input('Enter subject name: '))
-
+                    total_subject = input('Enter subject name using comma(,): ')
+                    subject_list = [subject.strip() for subject in total_subject.split(',') ]
                     info["Subjects"] = subject_list
 
                 if userType == 'teacher' : 
-                    total_class_no = int(input('Enter total class no: '))
-                    class_list = []
-
-                    for i in range(total_class_no):
-                        class_list.append(input('Enter subject name: '))
-
+                    total_class = input('Enter subject name using comma(,): ')
+                    class_list = [classname.strip() for classname in total_class.split(',')]
                     info["Classes"] = class_list       
-                
+    
                 self.info_list.append(info)
 
             return self.info_list  

@@ -5,7 +5,7 @@ class HR(School,Rules):
     def __init__(self, data) -> None:        
         self.__HR_data = data
         self.hr_name = data["name"]
-        print(self.hr_name[:3])
+        # print(self.hr_name[:3])
         super().__init__(3)
         self.totalHR, self.totalTeacher, self.totalStudent = self.total_info()
     
@@ -40,8 +40,6 @@ Monitor and assess academic performance and progress.
     def __total_revenew(self):
         return self.StudentFeesCount() - (self.TeachersalaryCount() + self.HRsalaryCount()) 
 
-
 new_HR = {"name": "Sabrina","salary": 8000}
 obj_hr = HR(new_HR)
 obj_hr.add_record()
-
